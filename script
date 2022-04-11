@@ -1,0 +1,37 @@
+var myHeaders = new Headers();
+myHeaders.append("access-token", "u_nB6ynA9iKEk9ZGqYPJ");
+myHeaders.append("resource-type", "user");
+myHeaders.append("uid", "diegosantos@ioasys.com.br");
+myHeaders.append("client", "6_QsTi_g4YsX_11uZUhZ");
+myHeaders.append("Host", "ioasys.prd.appnoz.com.br");
+myHeaders.append("host-header", "ioasys");
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  redirect: 'follow'
+}; 
+
+const getLike = (id) => {
+    console.log("ID: ", id)
+    fetch(`https://ioasys.prd.appnoz.com.br/api/v1/canvas_publications/${id}/canvas_likes`, requestOptions)
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+let idInital = 1000
+let idFinal = 1700
+
+setInterval(function () {
+    if(idInital < idFinal){ 
+        getLike(idInital)
+        idInital++;
+    }else{ 
+        alert("Acabou")
+    }
+
+}, 10000);
+
+
+
+ 
